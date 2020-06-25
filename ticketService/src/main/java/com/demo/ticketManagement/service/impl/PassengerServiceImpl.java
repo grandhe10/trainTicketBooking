@@ -41,29 +41,28 @@ public class PassengerServiceImpl implements PassengerService {
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
-	public PassengerResponseDto addPassengerDetails(List<PassengerRequestDto> passengerRequestDtoList, Long ticketId) {
-
-		passengerRequestDtoList.stream().map(passengerRequestDto -> addPassengers(passengerRequestDto, ticketId))
-				.collect(Collectors.toList());
-		PassengerResponseDto passengerResponseDto = new PassengerResponseDto();
-		passengerResponseDto.setMessage("Passenger added succesfully!!!");
-		return passengerResponseDto;
-	}
-
-	private Passenger addPassengers(PassengerRequestDto passengerRequestDto, Long ticketId) {
-		Optional<Ticket> ticket = ticketDao.findById(ticketId);
-		Long trainScheduleId = ticket.get().getTrainScheduleId();
-		Passenger passenger = new Passenger();
-		passenger.setAge(passengerRequestDto.getAge());
-		passenger.setTicketId(ticketId);
-		passenger.setPassengerName(passengerRequestDto.getPassengerName());
-		passenger.setSeatType(passengerRequestDto.getSeatType());
-		passengerDao.save(passenger);
-		String url = "http://TRAINSERVICE/seats/" + trainScheduleId;
-		restTemplate.getForObject(url, PassengerResponseDto.class);
-		return passenger;
-	}
+	/*
+	 * @Override public PassengerResponseDto
+	 * addPassengerDetails(List<PassengerRequestDto> passengerRequestDtoList, Long
+	 * ticketId) {
+	 * 
+	 * passengerRequestDtoList.stream().map(passengerRequestDto ->
+	 * addPassengers(passengerRequestDto, ticketId)) .collect(Collectors.toList());
+	 * PassengerResponseDto passengerResponseDto = new PassengerResponseDto();
+	 * passengerResponseDto.setMessage("Passenger added succesfully!!!"); return
+	 * passengerResponseDto; }
+	 * 
+	 * private Passenger addPassengers(PassengerRequestDto passengerRequestDto, Long
+	 * ticketId) { Optional<Ticket> ticket = ticketDao.findById(ticketId); Long
+	 * trainScheduleId = ticket.get().getTrainScheduleId(); Passenger passenger =
+	 * new Passenger(); passenger.setAge(passengerRequestDto.getAge());
+	 * passenger.setTicketId(ticketId);
+	 * passenger.setPassengerName(passengerRequestDto.getPassengerName());
+	 * passenger.setSeatType(passengerRequestDto.getSeatType());
+	 * passengerDao.save(passenger); String url = "http://TRAINSERVICE/seats/" +
+	 * trainScheduleId; restTemplate.getForObject(url, PassengerResponseDto.class);
+	 * return passenger; }
+	 */
 	
 	private String addPassengers1(PassengerRequestDto passengerRequestDto, Long ticketId) {
 		Optional<Ticket> ticket = ticketDao.findById(ticketId);

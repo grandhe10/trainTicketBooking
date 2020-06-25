@@ -20,7 +20,7 @@ public interface PassengerService {
 	 * @param ticketId
 	 * @return PassengerResponseDto with message
 	 */
-	PassengerResponseDto addPassengerDetails(List<PassengerRequestDto> passengerRequestDtoList, Long ticketId);
+	//PassengerResponseDto addPassengerDetails(List<PassengerRequestDto> passengerRequestDtoList, Long ticketId);
 
 	/**
 	 * This method is used to add passengerDetails 
